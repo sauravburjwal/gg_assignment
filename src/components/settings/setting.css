@@ -1,0 +1,51 @@
+.settings_box {
+  margin-top: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: #aaa;
+  padding: 20px;
+}
+
+.settings_btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.btn_settings {
+  float: left;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  text-align: left;
+  padding: 5px;
+  padding-left: 10px;
+  width: 200px;
+  height: 30px;
+  list-style-type: none;
+}
+.selected {
+  border-left: 4px solid blue;
+}
+.cta_btn {
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.close_btn {
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: blue;
+  padding: 8px;
+  font-size: medium;
+}
+.apply_btn {
+  font-size: medium;
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: white;
+  background-color: blue;
+  padding: 8px;
+}

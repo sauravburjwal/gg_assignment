@@ -1,0 +1,35 @@
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+}
+
+.side_line {
+  width: 60px;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 4, 54, 1) 0%,
+    rgba(2, 5, 92, 1) 46%,
+    rgba(35, 38, 97, 1) 100%
+  );
+}
+
+.main_box {
+  width: 100%;
+  padding: 50px;
+}
+.heading {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.btn:hover {
+  cursor: pointer;
+}
