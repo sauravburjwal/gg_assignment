@@ -1,19 +1,29 @@
 import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
+import { useSelector, useDispatch } from 'react-redux';
 import './setting.css';
+import { selectColoumns, toggleSettings } from '../../store/actions';
 
-const Settings = ({ setSetting, setTableColumn, tableColumn }) => {
+const Settings = () => {
+  const dispatch = useDispatch();
+  const showSettings = useSelector((state) => state.toggleSettings.showSetting);
+  const initialTableColumn = useSelector(
+    (state) => state.tableReducer.initialTableData,
+  );
+
   const handleCloseClick = () => {
-    setSetting((prev) => !prev);
+    dispatch(toggleSettings(!showSettings));
   };
   const handleChangeClick = () => {
-    setTableColumn(dragDropList.filter((item) => selectedList.includes(item)));
-    console.log('apply');
+    dispatch(
+      selectColoumns(
+        dragDropList.filter((item) => selectedList.includes(item)),
+      ),
+    );
   };
 
-  const [dragDropList, setDragDropList] = useState(tableColumn);
-  const [selectedList, setSelectedList] = useState(tableColumn);
+  const [dragDropList, setDragDropList] = useState(initialTableColumn);
+  const [selectedList, setSelectedList] = useState(initialTableColumn);
 
   const onDragComplete = (result) => {
     if (!result.destination) return;
@@ -27,11 +37,18 @@ const Settings = ({ setSetting, setTableColumn, tableColumn }) => {
     if (e.target.innerText === 'Date' || e.target.innerText === 'App') {
       return;
     }
-    document.getElementById(e?.target?.innerText)?.classList.toggle('selected');
-    if (selectedList.includes(e.target.innerText)) {
-      setSelectedList((prev) => prev.filter((ps) => ps !== e.target.innerText));
+    let str = e?.target?.innerText;
+    if (
+      e.target.innerText === 'Ad Requests' ||
+      e.target.innerText === 'Ad Responses'
+    ) {
+      str = e.target.innerText.split(' ')[1];
+    }
+    document.getElementById(str)?.classList.toggle('selected');
+    if (selectedList.includes(str)) {
+      setSelectedList((prev) => prev.filter((ps) => ps !== str));
     } else {
-      setSelectedList([...selectedList, e.target.innerText]);
+      setSelectedList([...selectedList, str]);
     }
   };
 
@@ -57,7 +74,11 @@ const Settings = ({ setSetting, setTableColumn, tableColumn }) => {
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
                     >
-                      {data === 'app_id' ? 'App' : data}
+                      {data === 'app_id'
+                        ? 'App'
+                        : data === 'Requests' || data === 'Responses'
+                        ? `Ad ${data}`
+                        : data}
                     </div>
                   )}
                 </Draggable>

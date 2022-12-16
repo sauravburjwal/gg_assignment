@@ -1,5 +1,6 @@
 .table {
   margin-top: 20px;
+  overflow: hidden;
 }
 table {
   width: 100%;
@@ -17,4 +18,18 @@ td {
 .name {
   padding: 10px;
   color: #444;
+}
+
+thead th.ascending::after {
+  content: '\25bc';
+  display: inline-block;
+  text-align: center;
+  margin-top: 2px;
+}
+
+thead th.descending::after {
+  content: '\25b2';
+  display: inline-block;
+  text-align: center;
+  margin-top: 2px;
 }
