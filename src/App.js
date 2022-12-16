@@ -1,8 +1,11 @@
 import { useSelector } from 'react-redux';
-import './App.css';
+
 import { Toolbar, Settings, DataTable } from './components';
+import './App.css';
+
 function App() {
   const showSettings = useSelector((state) => state.toggleSettings.showSetting);
+
   return (
     <div className="App">
       <div className="side_line" />

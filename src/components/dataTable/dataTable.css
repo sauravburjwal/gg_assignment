@@ -2,6 +2,7 @@
   margin-top: 20px;
   overflow: hidden;
 }
+
 table {
   width: 100%;
 }
@@ -9,12 +10,14 @@ table {
 tr {
   text-align: center;
 }
+
 td {
   color: #444;
   padding: 4px;
   text-align: center;
   border-top: 1px solid #ddd;
 }
+
 .name {
   padding: 10px;
   color: #444;
@@ -32,4 +35,10 @@ thead th.descending::after {
   display: inline-block;
   text-align: center;
   margin-top: 2px;
+}
+
+.error {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

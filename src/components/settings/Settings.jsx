@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useSelector, useDispatch } from 'react-redux';
-import './setting.css';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 import { selectColoumns, toggleSettings } from '../../store/actions';
+import './setting.css';
 
 const Settings = () => {
   const dispatch = useDispatch();
   const showSettings = useSelector((state) => state.toggleSettings.showSetting);
+
   const initialTableColumn = useSelector(
     (state) => state.tableReducer.initialTableData,
   );
@@ -14,6 +16,7 @@ const Settings = () => {
   const handleCloseClick = () => {
     dispatch(toggleSettings(!showSettings));
   };
+
   const handleChangeClick = () => {
     dispatch(
       selectColoumns(
@@ -44,7 +47,9 @@ const Settings = () => {
     ) {
       str = e.target.innerText.split(' ')[1];
     }
+
     document.getElementById(str)?.classList.toggle('selected');
+
     if (selectedList.includes(str)) {
       setSelectedList((prev) => prev.filter((ps) => ps !== str));
     } else {

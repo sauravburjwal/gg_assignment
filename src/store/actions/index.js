@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {
   FETCH_DATA,
-  APPLY_CHANGE,
   TOGGLE_SETTINGS,
   SELECT_COLUMN,
   FETCH_APP_NAME,
+  SET_ERROR,
 } from '../types';
 
 export const fetchData = (startD, endD) => async (dispatch) => {
@@ -13,19 +13,18 @@ export const fetchData = (startD, endD) => async (dispatch) => {
       `http://go-dev.greedygame.com/v3/dummy/report?startDate=${startD}&endDate=${endD}`,
     );
     dispatch({ type: FETCH_DATA, payload: res.data.data });
-  } catch (error) {}
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: true });
+  }
 };
+
 export const fetchAppName = () => async (dispatch) => {
   try {
     const res = await axios.get('http://go-dev.greedygame.com/v3/dummy/apps');
     dispatch({ type: FETCH_APP_NAME, payload: res.data.data });
-  } catch (error) {}
-};
-
-export const applyChange = () => {
-  return {
-    type: APPLY_CHANGE,
-  };
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: true });
+  }
 };
 
 export const toggleSettings = (setting) => {
