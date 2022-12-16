@@ -10,7 +10,7 @@ import {
 export const fetchData = (startD, endD) => async (dispatch) => {
   try {
     const res = await axios.get(
-      `http://go-dev.greedygame.com/v3/dummy/report?startDate=${startD}&endDate=${endD}`,
+      `https://go-dev.greedygame.com/v3/dummy/report?startDate=${startD}&endDate=${endD}`,
     );
     dispatch({ type: FETCH_DATA, payload: res.data.data });
   } catch (error) {
@@ -20,7 +20,7 @@ export const fetchData = (startD, endD) => async (dispatch) => {
 
 export const fetchAppName = () => async (dispatch) => {
   try {
-    const res = await axios.get('http://go-dev.greedygame.com/v3/dummy/apps');
+    const res = await axios.get('https://go-dev.greedygame.com/v3/dummy/apps');
     dispatch({ type: FETCH_APP_NAME, payload: res.data.data });
   } catch (error) {
     dispatch({ type: SET_ERROR, payload: true });
